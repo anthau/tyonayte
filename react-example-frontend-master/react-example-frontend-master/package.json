@@ -7,9 +7,12 @@
     "@types/node": "12.12.7",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
+    "bootstrap": "^4.6.0",
     "react": "^16.11.0",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
+    "react-scripts": "^3.4.4",
+    "reactstrap": "^8.9.0",
     "typescript": "3.7.2"
   },
   "scripts": {

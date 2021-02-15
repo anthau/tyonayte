@@ -1,5 +1,8 @@
 import React from 'react'
 
+
+
+import { Button } from 'reactstrap';
 interface BookSearchControlProps {
   readonly bookTitle: string
   readonly onBookTitleChange: (bookTitle: string) => void
@@ -50,7 +53,10 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                 >
                     Hae
       </button>
-               <br />
+
+                <br />
+                <Button color="primary">test!</Button>
+     
     </form>
   </div>
 )
