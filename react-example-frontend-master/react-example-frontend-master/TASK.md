@@ -20,4 +20,3 @@ list as well.
 The current implementation does not allow user to browse the returned results
 in anyway since only the most relevant 20 are displayed. Implement a way for the
 user to easily browse more results that match the given search parameters.
-test

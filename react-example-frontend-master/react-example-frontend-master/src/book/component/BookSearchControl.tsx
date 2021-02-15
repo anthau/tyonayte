@@ -14,7 +14,7 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
   searching,
 }: BookSearchControlProps) => (
   <div className="flex flex-col">
-            <h2 className="text-3xl">Hae kirjoja</h2>
+     <h2 className="text-3xl">Hae kirjoja</h2>
 
     <div className="font-light text-sm">Kirjan nimi</div>
     <form
@@ -24,24 +24,25 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
         onSearchSubmit()
       }}
             >
-       <label><b>tekij&auml;</b></label>
+       <label><b>title</b></label>
       <input
              
         type="text"
         value={bookTitle}
         onChange={event => onBookTitleChange(event.target.value)}
                 /> <br />
-       
-            <label><b>vuosi</b></label>
+                <label><b>author</b></label>
                 <input
-                 
                     type="text"
-             
-                  
                 />
 
                 <br />
-
+                <label><b>year</b></label>
+                <input
+                    type="text"
+                />
+                <br />
+           
       <button
         className="text-white font-bold px-8 py-2 bg-gray-700 hover:bg-gray-800 ml-2 focus:outline-none disabled:opacity-50"
         type="submit"
