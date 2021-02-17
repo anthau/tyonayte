@@ -17,7 +17,9 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
   const [bookCollection, setBookCollection] = React.useState<
     RemoteData.RemoteData<BookCollection>
   >(RemoteData.notAsked())
-  const [bookTitle, setBookTitle] = React.useState<string>('')
+    const [bookTitle, setBookTitle] = React.useState<string>('')
+    const [bookAuthor, setBookAuthor] = React.useState<string>('test')
+    const [bookYear, setBookYear] = React.useState<string>('')
   const [searchCriteria, setSearchCriteria] = React.useState<
     BookSearchCriteria | undefined
   >(undefined)
@@ -25,7 +27,8 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
   React.useEffect(() => {
     if (searchCriteria === undefined) {
       return
-    }
+      }
+    
     setBookCollection(RemoteData.loading())
     // title (optional) cleanIsbn (optional), edition (optional), year (optional)
     bookSearcher
@@ -40,11 +43,15 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
 
   return (
     <div className="flex flex-col px-4 py-4">
-      <BookSearchControl
-        bookTitle={bookTitle}
-        onBookTitleChange={setBookTitle}
-        onSearchSubmit={() => setSearchCriteria({ title: bookTitle })}
-        searching={RemoteData.isLoading(bookCollection)}
+          <BookSearchControl
+              bookTitle={bookTitle}
+              bookAuthor={bookAuthor}
+              onBookYearChange={setBookYear}
+              onBookTitleChange={setBookTitle}
+              onBookAuthorChange={setBookAuthor}
+              bookYear={bookYear}
+              onSearchSubmit={() => setSearchCriteria({ title: bookTitle, author: bookAuthor, year: bookYear })}
+              searching={RemoteData.isLoading(bookCollection)}
       />
       <hr className="my-5" />
       <BookList bookCollection={bookCollection} />
