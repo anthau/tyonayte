@@ -30,7 +30,8 @@ export class FinnaLibraryClient implements BookSearcher {
       
         const page = 1
         //todo koodaa parametrit
-        const lookFor = `title:` + title + ` year:2017`
+        const lookFor = `title:"${encodeURIComponent(title)}" AND year:"${encodeURIComponent(year)}" `  
+        alert(author)
         const queryParams = [
             ['lookfor', lookFor],
             ['type', 'AllFields'],
@@ -47,8 +48,6 @@ export class FinnaLibraryClient implements BookSearcher {
         const queryString = queryParams
             .map(([key, value]) => `${key}=${value}`)
             .join('&')
-
-
 
         return fetch(`https://api.finna.fi/api/v1/search?${queryString}`, {
             headers: { Accept: 'application/json' },

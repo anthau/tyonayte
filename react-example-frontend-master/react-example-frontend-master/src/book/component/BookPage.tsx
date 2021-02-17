@@ -18,7 +18,7 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
     RemoteData.RemoteData<BookCollection>
   >(RemoteData.notAsked())
     const [bookTitle, setBookTitle] = React.useState<string>('')
-    const [bookAuthor, setBookAuthor] = React.useState<string>('test')
+    const [bookAuthor, setBookAuthor] = React.useState<string>('')
     const [bookYear, setBookYear] = React.useState<string>('')
   const [searchCriteria, setSearchCriteria] = React.useState<
     BookSearchCriteria | undefined
