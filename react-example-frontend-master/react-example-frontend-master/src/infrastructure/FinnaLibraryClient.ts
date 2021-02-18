@@ -7,6 +7,7 @@ interface FinnaClientSearchRecord {
     readonly title: string
     readonly cleanIsbn?: string
     readonly year?: string
+    nonPresenterAuthors?: string
 }
 
 interface FinnaClientSearchResponse {
@@ -15,10 +16,13 @@ interface FinnaClientSearchResponse {
 }
 
 function toBook(searchRecord: FinnaClientSearchRecord): Book {
+    
     return {
         title: searchRecord.title,
         isbn: searchRecord.cleanIsbn,
         year: searchRecord.year,
+        author: JSON.stringify(searchRecord.nonPresenterAuthors)
+
     }
 }
 
@@ -27,17 +31,22 @@ function toBook(searchRecord: FinnaClientSearchRecord): Book {
 // https://api.finna.fi/swagger-ui/?url=%2Fapi%2Fv1%3Fswagger#!
 export class FinnaLibraryClient implements BookSearcher {
     findBooks({ title,author,year }: BookSearchCriteria): Promise<BookCollection> {
-      
+  
         const page = 1
         //todo koodaa parametrit
-        const lookFor = `title:"${encodeURIComponent(title)}" AND year:"${encodeURIComponent(year)}" `  
-        alert(author)
+        const lookFor = `title:"${encodeURIComponent(title)}"  AND author:"${encodeURIComponent(author)}"  AND year:"${encodeURIComponent(year)}" `  
+
         const queryParams = [
             ['lookfor', lookFor],
             ['type', 'AllFields'],
             ['field[]', 'title'],
             ['field[]', 'cleanIsbn'],
             ['field[]', 'year'],
+            
+            ['field[]', 'nonPresenterAuthors'],
+            ['field[]', 'presenters'],
+            
+            ['field[]', 'formats'],
             ['sort', 'relevance,year asc'],
             ['page', `${page}`],
             ['limit', '4'],
@@ -54,6 +63,7 @@ export class FinnaLibraryClient implements BookSearcher {
         })
             .then(response => response.json())
             .then((booksResponse: FinnaClientSearchResponse) => {
+                
                 return {
                     resultCount: booksResponse.resultCount,
                     books:

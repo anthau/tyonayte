@@ -46,8 +46,6 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                 <label><b>Year</b></label>
                 <Input type="text" onChange={event => onBookYearChange(event.target.value)} name="Year" id="Year" placeholder="Year" />
        
-      
-
                 <Button color="primary"
                     className="text-white font-bold px-8 py-2 bg-gray-700 hover:bg-gray-800 ml-2 focus:outline-none disabled:opacity-50"
                     type="submit"
