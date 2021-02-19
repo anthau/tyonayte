@@ -18,19 +18,24 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
     RemoteData.RemoteData<BookCollection>
   >(RemoteData.notAsked())
     const [bookTitle, setBookTitle] = React.useState<string>('')
+    const [page_number, setPageNumber] = React.useState<number>(1)
     const [bookAuthor, setBookAuthor] = React.useState<string>('')
     const [bookYear, setBookYear] = React.useState<string>('')
   const [searchCriteria, setSearchCriteria] = React.useState<
     BookSearchCriteria | undefined
   >(undefined)
 
-  React.useEffect(() => {
+    React.useEffect(() => {
+
+
     if (searchCriteria === undefined) {
       return
-      }
-    
-    setBookCollection(RemoteData.loading())
-    // title (optional) cleanIsbn (optional), edition (optional), year (optional)
+        }
+        searchCriteria.pageNumber = page_number;
+        setBookCollection(RemoteData.loading())
+
+       
+
     bookSearcher
       .findBooks(searchCriteria)
       .then((books: BookCollection) => {
@@ -39,18 +44,21 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
       .catch(error => {
         setBookCollection(RemoteData.failure(error))
       })
-  }, [searchCriteria, bookSearcher])
+    }, [searchCriteria, bookSearcher, page_number])
+
 
   return (
     <div className="flex flex-col px-4 py-4">
           <BookSearchControl
               bookTitle={bookTitle}
+              pageNumber={page_number}
               bookAuthor={bookAuthor}
+              onPageNumberChange={setPageNumber}
               onBookYearChange={setBookYear}
               onBookTitleChange={setBookTitle}
               onBookAuthorChange={setBookAuthor}
               bookYear={bookYear}
-              onSearchSubmit={() => setSearchCriteria({ title: bookTitle, author: bookAuthor, year: bookYear })}
+              onSearchSubmit={() => setSearchCriteria({ title: bookTitle, author: bookAuthor, year: bookYear, pageNumber: page_number })}
               searching={RemoteData.isLoading(bookCollection)}
       />
       <hr className="my-5" />

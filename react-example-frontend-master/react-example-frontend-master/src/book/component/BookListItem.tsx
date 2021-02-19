@@ -18,7 +18,7 @@ const BookListItem: React.FunctionComponent<BookListItemProps> = ({
   >
     <span className="flex-1 font-medium">{book.title}</span>
     <span className="flex-1 font-normal ml-5">{book.year}</span>
-            <span className="flex-1">{book.isbn}</span>
+      <span className="flex-1">{book.isbn}</span>
   </div>
 )
 

@@ -6,13 +6,9 @@ import { assertNever } from 'langextensions/assertNever'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
-
-
-
 interface BookListProps {
   readonly bookCollection: RemoteData<BookCollection>
 }
-
 
 const BookList: React.FunctionComponent<BookListProps> = ({
   bookCollection,
@@ -37,7 +33,6 @@ const BookList: React.FunctionComponent<BookListProps> = ({
             Header: 'Isbn',
             accessor: 'isbn'
         }
-        
     ]
 
 

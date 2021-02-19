@@ -1,19 +1,23 @@
 import React from 'react'
-
+import useEffect from 'react'
 
 
 import { Button, Input } from 'reactstrap';
+import 'semantic-ui-css/semantic.min.css'
+import { Icon } from 'semantic-ui-react'
+
 interface BookSearchControlProps {
-   
     readonly bookTitle: string
     readonly bookAuthor: string
     readonly bookYear: string
+    readonly pageNumber: number
     readonly onBookTitleChange: (bookTitle: string) => void
     readonly onBookAuthorChange: (bookTitle: string) => void
     readonly onBookYearChange: (bookTitle: string) => void
+    readonly onPageNumberChange: (page: number) => void
+    
     readonly onSearchSubmit: () => void
     readonly searching: boolean
-
 }
 
 const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
@@ -22,13 +26,15 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
     onBookTitleChange,
     onSearchSubmit,
     onBookAuthorChange,
+    pageNumber,
+    onPageNumberChange,
 
-    searching,
+    searching
 }: BookSearchControlProps) => (
 
         <div className="flex flex-col">
     
-            <h2 className="text-3xl">Hae kirjoja</h2>
+            <h2 className="text-3xl">Hae kirjoja </h2>
             <div className="font-light text-sm">Kirjan nimi</div>
 
             <form
@@ -36,8 +42,9 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                     event.preventDefault()
                     onSearchSubmit()
                 }}
+             
             >
-                <label><b>Title</b></label>
+                <label><b>Title</b>        <i className="ni ni-air-baloon"></i></label>
                 <Input type="text" name="title" onChange={event => onBookTitleChange(event.target.value)} id="title" placeholder="title" />
 
                 <label><b>Author</b></label>
@@ -55,10 +62,11 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                 </Button>
 
                 <br />
-
-
+                <h3>  <Button onClick={event => { onPageNumberChange(pageNumber - 1); }}> <Icon name='arrow left' /></Button><span style={{ margin: 25 }}>{pageNumber}</span><Button onClick={event => { onPageNumberChange(pageNumber + 1);   }}><Icon name='arrow right' /></Button></h3>
+ 
             </form>
         </div>
     )
 
 export default BookSearchControl
+

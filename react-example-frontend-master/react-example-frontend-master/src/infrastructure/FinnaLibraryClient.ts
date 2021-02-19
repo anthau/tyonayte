@@ -38,9 +38,10 @@ function toBook(searchRecord: FinnaClientSearchRecord): Book {
 // Swagger API documentation:
 // https://api.finna.fi/swagger-ui/?url=%2Fapi%2Fv1%3Fswagger#!
 export class FinnaLibraryClient implements BookSearcher {
-    findBooks({ title,author,year }: BookSearchCriteria): Promise<BookCollection> {
+    findBooks({ title, author, year, pageNumber}: BookSearchCriteria): Promise<BookCollection> {
   
-        const page = 1
+        const page = pageNumber
+
         //todo koodaa parametrit
         const lookFor = `title:"${encodeURIComponent(title.trim())}"  AND author:"${encodeURIComponent(author.trim())}"  AND year:"${encodeURIComponent(year.trim())}" `  
 
