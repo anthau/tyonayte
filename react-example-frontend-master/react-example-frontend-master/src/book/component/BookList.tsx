@@ -24,12 +24,20 @@ const BookList: React.FunctionComponent<BookListProps> = ({
         }
         ,
         {
-        
-       
             Header: 'Author',
             accessor: 'author'
-         
         }
+        ,
+        {
+            Header: 'Year',
+            accessor: 'year'
+        }
+        ,
+        {
+            Header: 'Isbn',
+            accessor: 'isbn'
+        }
+        
     ]
 
 

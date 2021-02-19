@@ -42,7 +42,7 @@ export class FinnaLibraryClient implements BookSearcher {
   
         const page = 1
         //todo koodaa parametrit
-        const lookFor = `title:"${encodeURIComponent(title)}"  AND author:"${encodeURIComponent(author)}"  AND year:"${encodeURIComponent(year)}" `  
+        const lookFor = `title:"${encodeURIComponent(title.trim())}"  AND author:"${encodeURIComponent(author.trim())}"  AND year:"${encodeURIComponent(year.trim())}" `  
 
         const queryParams = [
             ['lookfor', lookFor],
