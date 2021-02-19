@@ -24,8 +24,11 @@ const BookList: React.FunctionComponent<BookListProps> = ({
         }
         ,
         {
-            Header: <b>L&auml;ht&ouml;asema</b>,
+        
+       
+            Header: 'Author',
             accessor: 'author'
+         
         }
     ]
 

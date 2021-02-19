@@ -7,21 +7,29 @@ interface FinnaClientSearchRecord {
     readonly title: string
     readonly cleanIsbn?: string
     readonly year?: string
-    nonPresenterAuthors?: string
+    nonPresenterAuthors: Array<bookAuthor>
 }
 
 interface FinnaClientSearchResponse {
     readonly resultCount: number
     readonly records: readonly FinnaClientSearchRecord[]
 }
+interface bookAuthor {
+    readonly name: string
+   
+}
 
 function toBook(searchRecord: FinnaClientSearchRecord): Book {
-    
+
+    //converts authorlist to string
+    let namelist = "";
+    searchRecord.nonPresenterAuthors.every(author1 => namelist +=author1.name + " ")
+
     return {
         title: searchRecord.title,
         isbn: searchRecord.cleanIsbn,
         year: searchRecord.year,
-        author: JSON.stringify(searchRecord.nonPresenterAuthors)
+        author: namelist.trim()
 
     }
 }
