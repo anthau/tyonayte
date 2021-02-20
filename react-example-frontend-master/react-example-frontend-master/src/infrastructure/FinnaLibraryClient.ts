@@ -39,7 +39,7 @@ function toBook(searchRecord: FinnaClientSearchRecord): Book {
 // https://api.finna.fi/swagger-ui/?url=%2Fapi%2Fv1%3Fswagger#!
 export class FinnaLibraryClient implements BookSearcher {
     findBooks({ title, author, year, pageNumber}: BookSearchCriteria): Promise<BookCollection> {
-  
+
         const page = pageNumber
 
         //todo koodaa parametrit
@@ -57,7 +57,7 @@ export class FinnaLibraryClient implements BookSearcher {
             
             ['field[]', 'formats'],
             ['sort', 'relevance,year asc'],
-            ['page', `${page}`],
+            ['page', `${page+1}`],
             ['limit', '4'],
             ['prettyPrint', 'false'],
             ['lng', 'fi'],

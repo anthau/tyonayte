@@ -15,6 +15,7 @@ interface BookSearchControlProps {
     readonly onBookAuthorChange: (bookTitle: string) => void
     readonly onBookYearChange: (bookTitle: string) => void
     readonly onPageNumberChange: (page: number) => void
+    readonly bookpageNumber: number
     
     readonly onSearchSubmit: () => void
     readonly searching: boolean
@@ -28,6 +29,7 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
     onBookAuthorChange,
     pageNumber,
     onPageNumberChange,
+    bookpageNumber,
 
     searching
 }: BookSearchControlProps) => (
@@ -62,8 +64,7 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                 </Button>
 
                 <br />
-                <h3>  <Button onClick={event => { onPageNumberChange(pageNumber - 1 < 1 ? pageNumber = 1 : pageNumber = pageNumber - 1 ); }}> <Icon name='arrow left' /></Button><span style={{ margin: 25 }}>{pageNumber}</span><Button onClick={event => { onPageNumberChange(pageNumber + 1);   }}><Icon name='arrow right' /></Button></h3>
- 
+        
             </form>
         </div>
     )

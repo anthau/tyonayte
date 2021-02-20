@@ -14,11 +14,15 @@ interface BookPageProps {
 const BookPage: React.FunctionComponent<BookPageProps> = ({
   bookSearcher,
 }: BookPageProps) => {
+
   const [bookCollection, setBookCollection] = React.useState<
-    RemoteData.RemoteData<BookCollection>
+      RemoteData.RemoteData<BookCollection>
+
   >(RemoteData.notAsked())
+    
     const [bookTitle, setBookTitle] = React.useState<string>('')
-    const [page_number, setPageNumber] = React.useState<number>(1)
+
+    const [page_number, setPageNumber] = React.useState<number>(0)
     const [bookAuthor, setBookAuthor] = React.useState<string>('')
     const [bookYear, setBookYear] = React.useState<string>('')
   const [searchCriteria, setSearchCriteria] = React.useState<
@@ -32,13 +36,17 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
       return
         }
         searchCriteria.pageNumber = page_number;
+
         setBookCollection(RemoteData.loading())
+        
 
        
 
     bookSearcher
       .findBooks(searchCriteria)
-      .then((books: BookCollection) => {
+        .then((books: BookCollection) => {
+       
+        
         setBookCollection(RemoteData.success(books))
       })
       .catch(error => {
@@ -48,7 +56,8 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
 
 
   return (
-    <div className="flex flex-col px-4 py-4">
+      <div className="flex flex-col px-4 py-4">
+
           <BookSearchControl
               bookTitle={bookTitle}
               pageNumber={page_number}
@@ -60,9 +69,15 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
               bookYear={bookYear}
               onSearchSubmit={() => setSearchCriteria({ title: bookTitle, author: bookAuthor, year: bookYear, pageNumber: page_number })}
               searching={RemoteData.isLoading(bookCollection)}
-      />
-      <hr className="my-5" />
-      <BookList bookCollection={bookCollection} />
+              bookpageNumber={0}
+          />
+          <p>Page</p>
+          <hr className="my-5" />
+          <BookList
+              bookCollection={bookCollection}
+              pageNumber={page_number}
+              onPageNumberChange={setPageNumber}
+          />
     </div>
   )
 }
