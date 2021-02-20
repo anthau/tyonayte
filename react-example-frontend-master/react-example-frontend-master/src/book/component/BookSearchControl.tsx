@@ -1,5 +1,5 @@
 import React from 'react'
-import useEffect from 'react'
+
 
 
 import { Button, Input } from 'reactstrap';
@@ -62,7 +62,7 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                 </Button>
 
                 <br />
-                <h3>  <Button onClick={event => { onPageNumberChange(pageNumber - 1); }}> <Icon name='arrow left' /></Button><span style={{ margin: 25 }}>{pageNumber}</span><Button onClick={event => { onPageNumberChange(pageNumber + 1);   }}><Icon name='arrow right' /></Button></h3>
+                <h3>  <Button onClick={event => { onPageNumberChange(pageNumber - 1 < 1 ? pageNumber = 1 : pageNumber = pageNumber - 1 ); }}> <Icon name='arrow left' /></Button><span style={{ margin: 25 }}>{pageNumber}</span><Button onClick={event => { onPageNumberChange(pageNumber + 1);   }}><Icon name='arrow right' /></Button></h3>
  
             </form>
         </div>

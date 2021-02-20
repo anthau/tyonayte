@@ -44,7 +44,7 @@ export class FinnaLibraryClient implements BookSearcher {
 
         //todo koodaa parametrit
         const lookFor = `title:"${encodeURIComponent(title.trim())}"  AND author:"${encodeURIComponent(author.trim())}"  AND year:"${encodeURIComponent(year.trim())}" `  
-
+     
         const queryParams = [
             ['lookfor', lookFor],
             ['type', 'AllFields'],
@@ -72,7 +72,7 @@ export class FinnaLibraryClient implements BookSearcher {
         })
             .then(response => response.json())
             .then((booksResponse: FinnaClientSearchResponse) => {
-                
+       
                 return {
                     resultCount: booksResponse.resultCount,
                     books:
