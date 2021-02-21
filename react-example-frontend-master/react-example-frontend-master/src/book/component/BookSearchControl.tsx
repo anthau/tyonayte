@@ -4,7 +4,6 @@ import React from 'react'
 
 import { Button, Input } from 'reactstrap';
 import 'semantic-ui-css/semantic.min.css'
-import { Icon } from 'semantic-ui-react'
 
 interface BookSearchControlProps {
     readonly bookTitle: string
@@ -59,9 +58,7 @@ const BookSearchControl: React.FunctionComponent<BookSearchControlProps> = ({
                     className="text-white font-bold px-8 py-2 bg-gray-700 hover:bg-gray-800 ml-2 focus:outline-none disabled:opacity-50"
                     type="submit"
                     disabled={searching}
-                >
-                    Hae
-                </Button>
+                > Hae</Button>
 
                 <br />
         

@@ -10,7 +10,6 @@ const BookListHeader: React.FunctionComponent<BookListHeaderProps> = ({
 }: BookListHeaderProps) => (
   <div className="flex flex-col sm:flex-row text-2xl font-medium mb-2">
             <span>Tuloksia yhteensä: {Math.trunc(bookCollection.resultCount) }</span>
-    <span className="sm:ml-8">Näytetään: {bookCollection.books.length}</span>
   </div>
 )
 

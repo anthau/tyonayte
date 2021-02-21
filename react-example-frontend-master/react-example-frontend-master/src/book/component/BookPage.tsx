@@ -71,7 +71,6 @@ const BookPage: React.FunctionComponent<BookPageProps> = ({
               searching={RemoteData.isLoading(bookCollection)}
               bookpageNumber={0}
           />
-          <p>Page</p>
           <hr className="my-5" />
           <BookList
               bookCollection={bookCollection}
